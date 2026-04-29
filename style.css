@@ -687,22 +687,105 @@ body {
 }
 
 /* ─────────── Responsive ─────────── */
+/* ─────────── Mobile — 640px and below ─────────── */
 @media (max-width: 640px) {
+
+  /* Header: stacked, compact */
   .header { padding: 0 1rem; }
-  .header-inner { padding: 1.25rem 0 1rem; }
-  .tab-nav-inner { padding: 0 1rem; }
-  .main { padding: 1.5rem 1rem 4rem; }
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding: 0.875rem 0 0.75rem;
+  }
+  .logo { font-size: 1.6rem; }
+  .header-count {
+    text-align: left;
+    font-size: 0.72rem;
+  }
+  .header-count strong {
+    display: inline;
+    font-size: 1rem;
+    letter-spacing: 0;
+    margin-bottom: 0;
+    margin-right: 0.2rem;
+  }
+
+  /* Tabs: full width, centered */
+  .tab-nav-inner { padding: 0; }
+  .tab-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.8rem 0;
+    font-size: 0.82rem;
+  }
+
+  /* Main padding */
+  .main {
+    padding: 1.25rem 1rem calc(3.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Controls: stacked */
+  .controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Filter bar: horizontal scroll, no wrap, fade at edge */
   .filter-bar {
     flex-wrap: nowrap;
     overflow-x: auto;
-    padding-bottom: 2px;
+    width: 100%;
+    /* extra right padding so last pill isn't clipped */
+    padding-right: 1rem;
+    padding-bottom: 4px;
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
   .filter-bar::-webkit-scrollbar { display: none; }
-  .controls { flex-direction: column; align-items: flex-start; }
-  .spotlight-card { padding: 1.5rem 1.25rem; }
-  .spotlight-prompt { font-size: 1.15rem; }
+
+  /* Random btn: full width when visible */
+  .btn-random { width: 100%; justify-content: center; }
+
+  /* Grid: single column */
+  .grid {
+    grid-template-columns: 1fr;
+    border-radius: 8px;
+  }
+  .card { padding: 0.9rem 1rem; }
+
+  /* Modal: fullscreen */
+  .spotlight {
+    padding: 0;
+    align-items: flex-start;
+  }
+  .spotlight-card {
+    max-width: 100%;
+    width: 100%;
+    min-height: 100svh;
+    min-height: 100vh; /* fallback for browsers without svh */
+    border-radius: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 1.25rem 1.25rem
+      calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    animation: none; /* skip scale animation on mobile */
+  }
+  .spotlight-prompt {
+    font-size: 1.1rem;
+    padding-right: 2rem;
+  }
+  .spotlight-close {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  /* Edit form: stacked inputs */
   .edit-form-row { grid-template-columns: 1fr; }
-  .logo { font-size: 1.75rem; }
+  .edit-add-section { padding: 1.1rem; }
+
+  /* Edit list items: hide truncated detail on small screens */
+  .edit-item-detail { max-width: 40ch; }
 }
