@@ -1,0 +1,27 @@
+{
+  "name": "Kad bi vježbe",
+  "short_name": "KAD BI",
+  "description": "Baza vježbi za glumce — disanje, dikcija, mimika, glas, tijelo, impro i situacije.",
+  "lang": "hr",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#0a0a0a",
+  "background_color": "#0a0a0a",
+  "categories": ["education", "entertainment"],
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

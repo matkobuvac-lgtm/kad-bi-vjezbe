@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kad bi vježbe</title>
+  <meta name="description" content="Baza vježbi za glumce — disanje, dikcija, mimika, glas, tijelo, impro i situacije." />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="KAD BI" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1 class="logo">KAD BI</h1>
+        <p class="tagline">Baza vježbi za glumce</p>
+      </div>
+      <div class="header-count">
+        <strong id="exerciseCount"></strong>
+        <span>vježbi</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tab-nav">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" data-tab="vjezbe">Vježbe</button>
+      <button class="tab-btn" data-tab="uredi">Uredi</button>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <!-- ── TAB 1: Vježbe ── -->
+    <div id="tab-vjezbe" class="tab-panel">
+      <section class="controls">
+        <div class="filter-bar">
+          <button class="filter-btn active" data-category="sve">Sve</button>
+          <button class="filter-btn" data-category="disanje">Disanje</button>
+          <button class="filter-btn" data-category="dikcija">Dikcija</button>
+          <button class="filter-btn" data-category="mimika">Mimika</button>
+          <button class="filter-btn" data-category="glas">Glas</button>
+          <button class="filter-btn" data-category="tijelo">Tijelo</button>
+          <button class="filter-btn" data-category="zagrijavanje">Zagrijavanje</button>
+          <button class="filter-btn" data-category="povjerenje">Povjerenje</button>
+          <button class="filter-btn" data-category="impro">Impro</button>
+          <button class="filter-btn" data-category="pokret">Pokret</button>
+          <button class="filter-btn" data-category="situacije">Situacije</button>
+        </div>
+        <button class="btn-random" id="btnRandom">
+          <span class="dice">&#9861;</span> Nasumična vježba
+        </button>
+      </section>
+
+      <div id="spotlight" class="spotlight hidden">
+        <div class="spotlight-card">
+          <button class="spotlight-close" id="spotlightClose">&times;</button>
+          <span class="spotlight-category" id="spotlightCategory"></span>
+          <h2 class="spotlight-prompt" id="spotlightPrompt"></h2>
+          <p class="spotlight-detail" id="spotlightDetail"></p>
+          <div class="spotlight-timer">
+            <span id="timerDisplay">05:00</span>
+            <div class="timer-controls">
+              <button class="timer-btn" id="timerStart">&#9654; Start</button>
+              <button class="timer-btn" id="timerReset">&#8635; Reset</button>
+            </div>
+          </div>
+          <button class="btn-next" id="btnNext">Sljedeća &rarr;</button>
+        </div>
+      </div>
+
+      <div class="grid" id="exerciseGrid"></div>
+    </div>
+
+    <!-- ── TAB 2: Uredi ── -->
+    <div id="tab-uredi" class="tab-panel" style="display:none">
+
+      <section class="edit-add-section">
+        <h2 class="edit-section-title">Dodaj vježbu</h2>
+        <div class="edit-form">
+          <div class="edit-form-row">
+            <input type="text" id="newPrompt" placeholder="Naziv vježbe" />
+            <select id="newCategory">
+              <option value="">— odaberi kategoriju —</option>
+              <option value="disanje">Disanje</option>
+              <option value="dikcija">Dikcija</option>
+              <option value="mimika">Mimika</option>
+              <option value="glas">Glas</option>
+              <option value="tijelo">Tijelo</option>
+              <option value="zagrijavanje">Zagrijavanje</option>
+              <option value="povjerenje">Povjerenje</option>
+              <option value="impro">Impro</option>
+              <option value="pokret">Pokret</option>
+              <option value="situacije">Situacije</option>
+            </select>
+          </div>
+          <textarea id="newDetail" placeholder="Opis vježbe" rows="3"></textarea>
+          <div class="edit-form-actions">
+            <button id="btnAdd" class="btn-add-exercise">+ Dodaj vježbu</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="edit-list-section">
+        <div id="editList"></div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>Inspiracija: K. S. Stanislavski &mdash; <em>Rad glumca na sebi</em></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
