@@ -32,21 +32,18 @@ self.addEventListener('activate', e => {
   );
 });
 
-// Fetch: cache-first for local assets, network-only for external (fonts, etc.)
+// Fetch: network-first for local assets, fall back to cache when offline
 self.addEventListener('fetch', e => {
   if (!e.request.url.startsWith(self.location.origin)) return;
 
   e.respondWith(
-    caches.match(e.request).then(cached => {
-      if (cached) return cached;
-      return fetch(e.request).then(response => {
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response;
-        }
-        const clone = response.clone();
-        caches.open(CACHE).then(cache => cache.put(e.request, clone));
+    fetch(e.request).then(response => {
+      if (!response || response.status !== 200 || response.type !== 'basic') {
         return response;
-      });
-    })
+      }
+      const clone = response.clone();
+      caches.open(CACHE).then(cache => cache.put(e.request, clone));
+      return response;
+    }).catch(() => caches.match(e.request))
   );
 });
